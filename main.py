@@ -1,16 +1,28 @@
 import os
-
 from flask import Flask, request, abort
-from linebot import LineBotApi, WebhookHandler
-from linebot.exceptions import InvalidSignatureError
-from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from linebot import (
+    LineBotApi,
+    WebhookHandler,
+)
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot.models import (
+    MessageEvent,
+    TextMessage,
+    TextSendMessage,
+    FollowEvent,
+    ImageMessage,
+    AudioMessage,
+)
 
 app = Flask(__name__)
 
-#環境変数取得
+# 環境変数
 CHANNEL_ACCESS_TOKEN = os.environ["CHANNEL_ACCESS_TOKEN"]
 CHANNEL_SECRET = os.environ["CHANNEL_SECRET"]
 
+# API
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
@@ -18,6 +30,7 @@ handler = WebhookHandler(CHANNEL_SECRET)
 def hello_world():
     return "hello world!"
 
+# Check REQUEST
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -40,6 +53,12 @@ def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=event.message.text))
+
+@handler.add(FollowEvent)
+def handle_follow(event):
+   line_bot_api.reply_message(
+       event.reply_token,
+       TextSendMessage(text='友達追加ありがとう'))
 
 if __name__ == "__main__":
 #    app.run()
