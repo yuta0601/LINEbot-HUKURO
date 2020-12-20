@@ -51,15 +51,21 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     received_message = event.message.text
+    msg = received_message
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=received_message))
+        TextSendMessage(text=msg)
+    )
 
 @handler.add(FollowEvent)
 def handle_follow(event):
-   line_bot_api.reply_message(
-       event.reply_token,
-       TextSendMessage(text='友達追加ありがとう'))
+    msg = '友達追加ありがとう'
+
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=msg)
+    )
 
 if __name__ == "__main__":
 #    app.run()
