@@ -42,10 +42,9 @@ def callback():
 # オウム返しプログラム
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    received_msg = event.message.text
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=received_msg))
+        TextSendMessage(text=event.message.text))
 
 # 友達追加時イベント
 @handler.add(FollowEvent)
