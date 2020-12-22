@@ -42,7 +42,6 @@ def callback():
 
     # handle webhook body
     try:
-        createRichmenu()
         handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
@@ -51,26 +50,37 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    received_message = event.message.text
-    msg = received_message
+    try:
+        replied = text_pattern_handler.handle(event)
 
-    if received_message == "moodle":
-        msg = "https://moodle.it-hac-neec.jp/login/index.php"
+        if not replied:
+            # Default REPLY
+            # オウム返し
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=event.message.text)
+            )
+
+    except Exception:
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=msg)
+            TextSendMessage('エラーです')
         )
-    elif received_message == "is13":
-        msg = "https://sites.google.com/site/is13hp/home"
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=msg)
-        )
-    else:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=msg)
-        )
+        raise
+
+@text_pattern_handler.add(pattern=r'^moodle$')
+def reply_moodle(event: MessageEvent, match: Match):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text="https://moodle.it-hac-neec.jp/login/index.php")
+    )
+
+@text_pattern_handler.add(pattern=r'^is13$')
+def reply_moodle(event: MessageEvent, match: Match):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text="https://sites.google.com/site/is13hp/home")
+    )
 
 @handler.add(FollowEvent)
 def handle_follow(event):
@@ -80,45 +90,6 @@ def handle_follow(event):
         event.reply_token,
         TextSendMessage(text=msg)
     )
-
-
-def createRichmenu():
-    result = False
-    try:
-        # define a new richmenu
-        rich_menu_to_create = RichMenu(
-            size = RichMenuSize(width=1200, height=405),
-            selected = True,
-            name = 'richmenu for randomchat',
-            chat_bar_text = 'TAP HERE',
-            areas=[
-                RichMenuArea(
-                    bounds=RichMenuBounds(x=0, y=0, width=480, height=405),
-                    action=MessageAction(text=config.REMOVE)
-                ),
-                RichMenuArea(
-                    bounds=RichMenuBounds(x=480, y=0, width=720, height=405),
-                    action=MessageAction(text=config.NEXT)
-                )
-            ]
-        )
-        richMenuId = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
-
-        # upload an image for rich menu
-        path = 'image'
-
-        with open(path, 'rb') as f:
-            line_bot_api.set_rich_menu_image(richMenuId, "image/jpeg", f)
-
-        # set the default rich menu
-        line_bot_api.set_default_rich_menu(richMenuId)
-
-        result = True
-
-    except Exception:
-        result = False
-
-    return result
 
 
 if __name__ == "__main__":
