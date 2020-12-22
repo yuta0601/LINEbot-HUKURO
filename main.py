@@ -1,5 +1,11 @@
 import os
-from flask import Flask, request, abort
+from flask import (
+    Flask,
+    request,
+    abort,
+)
+import re
+from re import Match
 from linebot import (
     LineBotApi,
     WebhookHandler,
@@ -11,6 +17,9 @@ from linebot.models import (
     MessageEvent,
     TextMessage,
     TextSendMessage,
+    # FlexSendMessage,
+    # BubbleContainer,
+    # CarouselContainer,
     FollowEvent,
     ImageMessage,
     AudioMessage,
@@ -25,6 +34,32 @@ CHANNEL_SECRET = os.environ["CHANNEL_SECRET"]
 # API
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
+
+class TextPatternHandler:
+
+    def __init__(self):
+        self.handlers = []
+
+    def add(self, pattern: str):
+        def decorator(func):
+            self.handlers.append((re.compile(pattern), func))
+            return func
+        return decorator
+
+    def handle(self, event: MessageEvent):
+
+        text = event.message.text
+
+        for pattern, func in self.handlers:
+            m = pattern.match(text)
+            if m:
+                func(event, m)
+                return True
+
+        return False
+
+
+text_pattern_handler = TextPatternHandler()
 
 @app.route("/")
 def hello_world():
