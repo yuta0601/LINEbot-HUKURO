@@ -59,9 +59,8 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=msg)
         )
-    elif:
+    elif received_message == "is13":
         msg = "https://sites.google.com/site/is13hp/home"
-        received_message == "is13":
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=msg)
