@@ -35,6 +35,192 @@ CHANNEL_SECRET = os.environ["CHANNEL_SECRET"]
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
+payload = {
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Arm Chair, White",
+            "weight": "bold",
+            "size": "xl",
+            "wrap": True,
+            "contents": []
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "text",
+                "text": "$49",
+                "weight": "bold",
+                "size": "xl",
+                "flex": 0,
+                "wrap": True,
+                "contents": []
+              },
+              {
+                "type": "text",
+                "text": ".99",
+                "weight": "bold",
+                "size": "sm",
+                "flex": 0,
+                "wrap": True,
+                "contents": []
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "Add to Cart",
+              "uri": "https://linecorp.com"
+            },
+            "style": "primary"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "Add to wishlist",
+              "uri": "https://linecorp.com"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_6_carousel.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Metal Desk Lamp",
+            "weight": "bold",
+            "size": "xl",
+            "wrap": True,
+            "contents": []
+          },
+          {
+            "type": "box",
+            "layout": "baseline",
+            "flex": 1,
+            "contents": [
+              {
+                "type": "text",
+                "text": "$11",
+                "weight": "bold",
+                "size": "xl",
+                "flex": 0,
+                "wrap": True,
+                "contents": []
+              },
+              {
+                "type": "text",
+                "text": ".99",
+                "weight": "bold",
+                "size": "sm",
+                "flex": 0,
+                "wrap": True,
+                "contents": []
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "Temporarily out of stock",
+            "size": "xxs",
+            "color": "#FF5551",
+            "flex": 0,
+            "margin": "md",
+            "wrap": True,
+            "contents": []
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "Add to Cart",
+              "uri": "https://linecorp.com"
+            },
+            "flex": 2,
+            "color": "#AAAAAA",
+            "style": "primary"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "Add to wish list",
+              "uri": "https://linecorp.com"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "See more",
+              "uri": "https://linecorp.com"
+            },
+            "flex": 1,
+            "gravity": "center"
+          }
+        ]
+      }
+    }
+  ]
+}
+
+container_obj = FlexSendMessage.new_from_json_dict(payload)
 
 @app.route("/")
 def hello_world():
@@ -72,6 +258,13 @@ def handle_message(event):
             event.reply_token, 
             TextSendMessage(text="https://sites.google.com/site/is13hp/home"),
         )
+    
+    elif event.message.text = "test":
+        line_bot_api.reply_message(
+            event.reply_token, 
+            TextSendMessage(text=container_obj),
+        )
+
     else:
         line_bot_api.reply_message(
             event.reply_token, 
