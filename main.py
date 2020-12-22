@@ -53,10 +53,24 @@ def handle_message(event):
     received_message = event.message.text
     msg = received_message
 
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=msg)
-    )
+    if received_message == "moodle":
+        msg = "https://moodle.it-hac-neec.jp/login/index.php"
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=msg)
+        )
+    elif:
+        msg = "https://sites.google.com/site/is13hp/home"
+        received_message == "is13":
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=msg)
+        )
+    else:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=msg)
+        )
 
 @handler.add(FollowEvent)
 def handle_follow(event):
