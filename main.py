@@ -42,6 +42,7 @@ def callback():
 
     # handle webhook body
     try:
+        createRichmenu()
         handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
