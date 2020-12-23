@@ -148,7 +148,7 @@ def handle_message(event):
             TextSendMessage(text="https://sites.google.com/site/is13hp/home"),
         )
     
-    elif event.message.text = "test":
+    elif event.message.text == "test":
         line_bot_api.reply_message(
             event.reply_token, 
             TextSendMessage(text="テスト"),
