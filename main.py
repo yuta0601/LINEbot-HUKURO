@@ -307,7 +307,7 @@ def handle_message(event):
     elif event.message.text == "test":
         line_bot_api.reply_message(
             event.reply_token, 
-            TextSendMessage(message=container_obj),
+            TextSendMessage(messages=container_obj),
         )
 
     else:
