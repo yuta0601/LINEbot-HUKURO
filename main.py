@@ -37,6 +37,26 @@ CHANNEL_SECRET = os.environ["CHANNEL_SECRET"]
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
+flex_message_json_string = """
+{
+    'type': 'bubble',
+    'direction': 'ltr',
+    'hero': {
+        'type': 'image',
+        'url': 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+        'size': 'full',
+        'aspectRatio': '20:13',
+        'aspectMode': 'cover',
+        'action': {
+            'type': 'uri',
+            'uri': 'http://example.com',
+            'label': 'label'
+        }
+    },
+}
+"""
+flex_message_json_dict = json.loads(flex_message_json_string)
+
 @app.route("/")
 def hello_world():
     return "hello world!"
@@ -79,22 +99,23 @@ def handle_message(event):
             event.reply_token, 
             FlexSendMessage(
                 alt_text="test",
-                contents={
-                    'type': 'bubble',
-                    'direction': 'ltr',
-                    'hero': {
-                        'type': 'image',
-                        'url': 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
-                        'size': 'full',
-                        'aspectRatio': '20:13',
-                        'aspectMode': 'cover',
-                        'action': {
-                            'type': 'uri',
-                            'uri': 'http://example.com',
-                            'label': 'label'
-                        }
-                    },
-                }
+                # contents={
+                #     'type': 'bubble',
+                #     'direction': 'ltr',
+                #     'hero': {
+                #         'type': 'image',
+                #         'url': 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+                #         'size': 'full',
+                #         'aspectRatio': '20:13',
+                #         'aspectMode': 'cover',
+                #         'action': {
+                #             'type': 'uri',
+                #             'uri': 'http://example.com',
+                #             'label': 'label'
+                #         }
+                #     },
+                # }
+                contents=flex_message_json_dict
             )
         )
     
