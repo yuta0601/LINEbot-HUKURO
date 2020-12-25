@@ -367,9 +367,9 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             FlexSendMessage(
-                alt_text="test",
+                # alt_text="test",
                 contents=flex_message_json_dict
-            )
+            ),
         )
 
     else:
