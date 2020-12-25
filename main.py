@@ -84,12 +84,16 @@ def handle_message(event):
                     'direction': 'ltr',
                     'hero': {
                         'type': 'image',
-                        # 'url': 'https://example.com/cafe.jpg',
-                        'url': 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+                        # 'url': 'https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png',
+                        'url': './images/is13.png',
                         'size': 'full',
                         'aspectRatio': '20:13',
                         'aspectMode': 'cover',
-                        'action': { 'type': 'uri', 'uri': 'http://example.com', 'label': 'label' }
+                        'action': {
+                            'type': 'uri',
+                            'uri': 'http://example.com',
+                            'label': 'label'
+                        }
                     }
                 }
             )
