@@ -266,7 +266,8 @@ payload = {
   }
 }
 
-container_obj = FlexSendMessage.new_from_json_dict(payload)
+# container_obj = FlexSendMessage.new_from_json_dict(payload)
+container_obj = json.loads(payload)
 
 @app.route("/")
 def hello_world():
@@ -308,7 +309,10 @@ def handle_message(event):
     elif event.message.text == "test":
         line_bot_api.reply_message(
             event.reply_token, 
-            TextSendMessage(messages=container_obj),
+            FlexSendMessage(
+              alt_text='test',
+              messages=container_obj,
+            ),
         )
 
     else:
