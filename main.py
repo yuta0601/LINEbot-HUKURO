@@ -110,166 +110,210 @@ handler = WebhookHandler(CHANNEL_SECRET)
 #   }
 # }
 
-payload = """
-{
-  "type": "flex",
-  "altText": "Flex Message",
-  "contents": {
-    "type": "bubble",
-    "hero": {
-      "type": "image",
-      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
-      "size": "full",
-      "aspectRatio": "20:13",
-      "aspectMode": "cover",
-      "action": {
-        "type": "uri",
-        "label": "Line",
-        "uri": "https://linecorp.com/"
-      }
-    },
-    "body": {
-      "type": "box",
-      "layout": "vertical",
-      "contents": [
+flex_message_json_string="""
+{  
+  type: flex,
+  altText: Flex Message,
+  contents: {
+    type: bubble,
+    direction: ltr,
+    header: {
+      type: box,
+      layout: vertical,
+      contents: [
         {
-          "type": "text",
-          "text": "Brown Cafe",
-          "size": "xl",
-          "weight": "bold"
-        },
-        {
-          "type": "box",
-          "layout": "baseline",
-          "margin": "md",
-          "contents": [
-            {
-              "type": "icon",
-              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-              "size": "sm"
-            },
-            {
-              "type": "icon",
-              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-              "size": "sm"
-            },
-            {
-              "type": "icon",
-              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-              "size": "sm"
-            },
-            {
-              "type": "icon",
-              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-              "size": "sm"
-            },
-            {
-              "type": "icon",
-              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
-              "size": "sm"
-            },
-            {
-              "type": "text",
-              "text": "4.0",
-              "flex": 0,
-              "margin": "md",
-              "size": "sm",
-              "color": "#999999"
-            }
-          ]
-        },
-        {
-          "type": "box",
-          "layout": "vertical",
-          "spacing": "sm",
-          "margin": "lg",
-          "contents": [
-            {
-              "type": "box",
-              "layout": "baseline",
-              "spacing": "sm",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "Place",
-                  "flex": 1,
-                  "size": "sm",
-                  "color": "#AAAAAA"
-                },
-                {
-                  "type": "text",
-                  "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
-                  "flex": 5,
-                  "size": "sm",
-                  "color": "#666666",
-                  "wrap": True
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "spacing": "sm",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "Time",
-                  "flex": 1,
-                  "size": "sm",
-                  "color": "#AAAAAA"
-                },
-                {
-                  "type": "text",
-                  "text": "10:00 - 23:00",
-                  "flex": 5,
-                  "size": "sm",
-                  "color": "#666666",
-                  "wrap": True
-                }
-              ]
-            }
-          ]
+          type: text,
+          text: ,
+          align: center
         }
       ]
     },
-    "footer": {
-      "type": "box",
-      "layout": "vertical",
-      "flex": 0,
-      "spacing": "sm",
-      "contents": [
+    hero: {
+      type: image,
+      url: https://images-na.ssl-images-amazon.com/images/I/81dkWPlc-AL._SX522_.jpg,
+      size: full,
+      aspectRatio: 1.51:1,
+      aspectMode: fit
+    },
+    footer: {
+      type: box,
+      layout: horizontal,
+      contents: [
         {
-          "type": "button",
-          "action": {
-            "type": "uri",
-            "label": "CALL",
-            "uri": "https://linecorp.com"
-          },
-          "height": "sm",
-          "style": "link"
-        },
-        {
-          "type": "button",
-          "action": {
-            "type": "uri",
-            "label": "WEBSITE",
-            "uri": "https://linecorp.com"
-          },
-          "height": "sm",
-          "style": "link"
-        },
-        {
-          "type": "spacer",
-          "size": "sm"
+          type: button,
+          action: {
+            type: uri,
+            label: 購入,
+            uri: https://www.amazon.co.jp/天然水-【Amazon-co-jp-限定】サントリー-南アルプスの天然水-2L×9本/dp/B07F1CCSJZ/ref=sr_1_1_sspa?__mk_ja_JP=カタカナ&keywords=水&qid=1563628084&s=gateway&sr=8-1-spons&psc=1
+          }
         }
       ]
     }
   }
 }
 """
+flex_message_json_dict = json.loads(flex_message_json_string)
 
-# container_obj = FlexSendMessage.new_from_json_dict(payload)
-container_obj = json.loads(payload)
+# payload = """
+# {
+#   "type": "flex",
+#   "altText": "Flex Message",
+#   "contents": {
+#     "type": "bubble",
+#     "hero": {
+#       "type": "image",
+#       "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+#       "size": "full",
+#       "aspectRatio": "20:13",
+#       "aspectMode": "cover",
+#       "action": {
+#         "type": "uri",
+#         "label": "Line",
+#         "uri": "https://linecorp.com/"
+#       }
+#     },
+#     "body": {
+#       "type": "box",
+#       "layout": "vertical",
+#       "contents": [
+#         {
+#           "type": "text",
+#           "text": "Brown Cafe",
+#           "size": "xl",
+#           "weight": "bold"
+#         },
+#         {
+#           "type": "box",
+#           "layout": "baseline",
+#           "margin": "md",
+#           "contents": [
+#             {
+#               "type": "icon",
+#               "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+#               "size": "sm"
+#             },
+#             {
+#               "type": "icon",
+#               "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+#               "size": "sm"
+#             },
+#             {
+#               "type": "icon",
+#               "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+#               "size": "sm"
+#             },
+#             {
+#               "type": "icon",
+#               "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+#               "size": "sm"
+#             },
+#             {
+#               "type": "icon",
+#               "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+#               "size": "sm"
+#             },
+#             {
+#               "type": "text",
+#               "text": "4.0",
+#               "flex": 0,
+#               "margin": "md",
+#               "size": "sm",
+#               "color": "#999999"
+#             }
+#           ]
+#         },
+#         {
+#           "type": "box",
+#           "layout": "vertical",
+#           "spacing": "sm",
+#           "margin": "lg",
+#           "contents": [
+#             {
+#               "type": "box",
+#               "layout": "baseline",
+#               "spacing": "sm",
+#               "contents": [
+#                 {
+#                   "type": "text",
+#                   "text": "Place",
+#                   "flex": 1,
+#                   "size": "sm",
+#                   "color": "#AAAAAA"
+#                 },
+#                 {
+#                   "type": "text",
+#                   "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+#                   "flex": 5,
+#                   "size": "sm",
+#                   "color": "#666666",
+#                   "wrap": True
+#                 }
+#               ]
+#             },
+#             {
+#               "type": "box",
+#               "layout": "baseline",
+#               "spacing": "sm",
+#               "contents": [
+#                 {
+#                   "type": "text",
+#                   "text": "Time",
+#                   "flex": 1,
+#                   "size": "sm",
+#                   "color": "#AAAAAA"
+#                 },
+#                 {
+#                   "type": "text",
+#                   "text": "10:00 - 23:00",
+#                   "flex": 5,
+#                   "size": "sm",
+#                   "color": "#666666",
+#                   "wrap": True
+#                 }
+#               ]
+#             }
+#           ]
+#         }
+#       ]
+#     },
+#     "footer": {
+#       "type": "box",
+#       "layout": "vertical",
+#       "flex": 0,
+#       "spacing": "sm",
+#       "contents": [
+#         {
+#           "type": "button",
+#           "action": {
+#             "type": "uri",
+#             "label": "CALL",
+#             "uri": "https://linecorp.com"
+#           },
+#           "height": "sm",
+#           "style": "link"
+#         },
+#         {
+#           "type": "button",
+#           "action": {
+#             "type": "uri",
+#             "label": "WEBSITE",
+#             "uri": "https://linecorp.com"
+#           },
+#           "height": "sm",
+#           "style": "link"
+#         },
+#         {
+#           "type": "spacer",
+#           "size": "sm"
+#         }
+#       ]
+#     }
+#   }
+# }
+# """
+
+# # container_obj = FlexSendMessage.new_from_json_dict(payload)
+# container_obj = json.loads(payload)
 
 @app.route("/")
 def hello_world():
@@ -308,13 +352,22 @@ def handle_message(event):
             TextSendMessage(text="https://sites.google.com/site/is13hp/home"),
         )
     
-    elif event.message.text == "test":
+    # elif event.message.text == "test":
+    #     line_bot_api.reply_message(
+    #         event.reply_token, 
+    #         FlexSendMessage(
+    #           alt_text='test',
+    #           messages=container_obj,
+    #         ),
+    #     )
+    
+    elif event.message.test == "test":
         line_bot_api.reply_message(
-            event.reply_token, 
+            event.reply_token,
             FlexSendMessage(
-              alt_text='test',
-              messages=container_obj,
-            ),
+                alt_text=alt_text,
+                contents=flex_message_json_dict
+            )
         )
 
     else:
