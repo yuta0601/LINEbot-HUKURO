@@ -94,30 +94,6 @@ def handle_message(event):
                             'label': 'label'
                         }
                     },
-                    'body': {
-                        'type': 'box',
-                        'layout': 'vertical',
-                        'spacing': 'sm',
-                        'contents': [
-                            {
-                                'type': 'text',
-                                'text': 'Arm Chair, White',
-                                'weight': 'bold',
-                                'size': 'xl',
-                                'wrap': true,
-                                'contents': []
-                            },
-                            {
-                                'type': 'text',
-                                'text': '.99',
-                                'weight': 'bold',
-                                'size': 'sm',
-                                'flex': 0,
-                                'wrap': true,
-                                'contents': []
-                            }
-                        ]
-                    }
                 }
             )
         )
