@@ -365,7 +365,23 @@ def handle_message(event):
     elif event.message.text == "test":
         line_bot_api.reply_message(
             event.reply_token, 
-            TextSendMessage(text="https://sites.google.com/site/is13hp/home"),
+            # TextSendMessage(text="https://sites.google.com/site/is13hp/home"),
+            FlexSendMessage(
+                alt_text="test",
+                # contents=flex_message_json_dict,
+                contents={
+                    'type': 'bubble',
+                    'direction': 'ltr',
+                    'hero': {
+                        'type': 'image',
+                        'url': 'https://example.com/cafe.jpg',
+                        'size': 'full',
+                        'aspectRatio': '20:13',
+                        'aspectMode': 'cover',
+                        'action': { 'type': 'uri', 'uri': 'http://example.com', 'label': 'label' }
+                    }
+                }
+            )
         )
     
     # elif event.message.test == "test":
