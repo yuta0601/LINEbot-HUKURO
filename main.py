@@ -362,15 +362,19 @@ def handle_message(event):
     #           messages=container_obj,
     #         ),
     #     )
-    
-    elif event.message.test == "test":
+    elif event.message.text == "test":
         line_bot_api.reply_message(
-            event.reply_token,
-            FlexSendMessage(
-                # alt_text="test",
-                contents=flex_message_json_dict
-            ),
-        )
+            event.reply_token, 
+            TextSendMessage(text="https://sites.google.com/site/is13hp/home"),
+    
+    # elif event.message.test == "test":
+    #     line_bot_api.reply_message(
+    #         event.reply_token,
+    #         FlexSendMessage(
+    #             # alt_text="test",
+    #             contents=flex_message_json_dict
+    #         ),
+    #     )
 
     else:
         line_bot_api.reply_message(
