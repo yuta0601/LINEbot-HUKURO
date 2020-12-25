@@ -77,7 +77,7 @@ def handle_message(event):
     elif event.message.text == "test":
         line_bot_api.reply_message(
             event.reply_token, 
-            flex_message = FlexSendMessage(
+            FlexSendMessage(
                 alt_text="test",
                 contents={
                     'type': 'bubble',
