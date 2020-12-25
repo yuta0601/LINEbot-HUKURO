@@ -110,7 +110,8 @@ handler = WebhookHandler(CHANNEL_SECRET)
 #   }
 # }
 
-payload = {
+payload = """
+{
   "type": "flex",
   "altText": "Flex Message",
   "contents": {
@@ -265,6 +266,7 @@ payload = {
     }
   }
 }
+"""
 
 # container_obj = FlexSendMessage.new_from_json_dict(payload)
 container_obj = json.loads(payload)
