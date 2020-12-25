@@ -84,17 +84,30 @@ def handle_message(event):
                     "direction": "ltr",
                     "hero": {
                         "type": "image",
-                        # "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_5_carousel.png",
                         "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
                         "size": "full",
                         "aspectRatio": "20:13",
                         "aspectMode": "cover",
                         "action": {
                             "type": "uri",
-                            "uri": "http://example.com",
+                            "uri": "https://sites.google.com/site/is13hp/home",
                             "label": "label"
                         }
                     },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Brown Cafe",
+                                "weight": "bold",
+                                "size": "xl",
+                                "contents": []
+                            },
+                        ]
+                    },
+                    "footer": {},
                 }
             )
         )
