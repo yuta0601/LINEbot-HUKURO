@@ -62,16 +62,16 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
-    if event.message.text == "moodle":
+    if event.message.text == "hoge":
         line_bot_api.reply_message(
             event.reply_token, 
-            TextSendMessage(text="https://moodle.it-hac-neec.jp/login/index.php"),
+            TextSendMessage(text="hogehoge"),
         )
 
-    elif event.message.text == "is13":
+    elif event.message.text == "foo":
         line_bot_api.reply_message(
             event.reply_token, 
-            TextSendMessage(text="https://sites.google.com/site/is13hp/home"),
+            TextSendMessage(text="hogefoo"),
         )
     
     elif event.message.text == "test":
@@ -90,24 +90,10 @@ def handle_message(event):
                         "aspectMode": "cover",
                         "action": {
                             "type": "uri",
-                            "uri": "https://sites.google.com/site/is13hp/home",
+                            "uri": "https://sites.google.com",
                             "label": "label"
                         }
                     },
-                    "body": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "Brown Cafe",
-                                "weight": "bold",
-                                "size": "xl",
-                                "contents": []
-                            },
-                        ]
-                    },
-                    "footer": {},
                 }
             )
         )
