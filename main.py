@@ -247,7 +247,7 @@ def handle_message(event):
             TextSendMessage(text=user_id),
         )
 
-    line_bot_api.push_message(userId, messages=container_obj)
+        line_bot_api.push_message(userId, messages=container_obj)
 
     elif event.message.text == "foo":
         line_bot_api.reply_message(
