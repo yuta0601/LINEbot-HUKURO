@@ -65,16 +65,17 @@ def handle_message(event):
 
     if event.message.text == "user":
 
-        # profile = line_bot_api.get_profile(event.source.user_id)
-        # display_name = profile.display_name
-        # userID = profile.user_id
-        # image_url = profile.image_url
-        # status_message = profile.status_message
-        
+        # 個人情報取得(機密情報)
+        userId = event.source.user_id
+        profile = line_bot_api.get_profile(userId)
+        display_name = profile.display_name
+        image_url = profile.image_url
+        status_message = profile.status_message
+
 
         line_bot_api.reply_message(
             event.reply_token, 
-            TextSendMessage(text=event.source.user_id),
+            TextSendMessage(text=user_id),
         )
 
     elif event.message.text == "foo":
