@@ -63,10 +63,18 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
-    if event.message.text == "hoge":
+    if event.message.text == "user":
+
+        profile = line_bot_api.get_profile(event.source.user_id)
+        display_name = profile.display_name
+        userID = profile.user_id
+        image_url = profile.image_url
+        status_message = profile.status_message
+        
+
         line_bot_api.reply_message(
             event.reply_token, 
-            TextSendMessage(text="hogehoge"),
+            TextSendMessage(text=userID),
         )
 
     elif event.message.text == "foo":
