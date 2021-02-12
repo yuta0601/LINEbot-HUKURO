@@ -1,4 +1,4 @@
-[![Python-version](https://img.shields.io/badge/Python-3.9.1-green)]
+![Python-version](https://img.shields.io/badge/Python-3.9.1-green)
 # LINEBot HUKURO
 
 ## Feature
