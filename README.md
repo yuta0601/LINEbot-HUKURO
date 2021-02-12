@@ -1,4 +1,6 @@
 ![Python-version](https://img.shields.io/badge/Python-3.9.1-green)
+![HEROKU](https://img.shields.io/badge/HEROKU-Success-blue)
+
 # LINEBot HUKURO
 
 ## Feature
