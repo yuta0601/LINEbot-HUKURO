@@ -3,4 +3,4 @@
 ## About LINEBot HUKURO
 
 ## QRCode
-![alt](./images/QRCode.png)
+![QRCode](./images/QRCode.png)
