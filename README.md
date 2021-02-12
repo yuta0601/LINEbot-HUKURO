@@ -25,10 +25,15 @@
 |Werkzeug     |1.0.1|
 
 ## Installation
+```
+git clone https://github.com/yuta0601/LINEbot-HUKURO.git
+cd /path/to/project
+pip install -r requirements.txt
+```
 
 ## Usage
 
-## Note
-
-## QRCode
+### QRCode
 ![QRCode](./images/QRCode.png)
+
+## Note
