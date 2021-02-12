@@ -28,175 +28,6 @@ from linebot.models import (
 )
 
 
-payload = {
-  "type": "flex",
-  "altText": "Flex Message",
-  "contents": {
-    "type": "bubble",
-    "hero": {
-      "type": "image",
-      "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
-      "size": "full",
-      "aspectRatio": "20:13",
-      "aspectMode": "cover",
-      "action": {
-        "type": "uri",
-        "label": "Line",
-        "uri": "https://linecorp.com/"
-      }
-    },
-    "body": {
-      "type": "box",
-      "layout": "vertical",
-      "contents": [
-        {
-          "type": "text",
-          "text": "Brown Cafe",
-          "size": "xl",
-          "weight": "bold"
-        },
-        {
-          "type": "box",
-          "layout": "baseline",
-          "margin": "md",
-          "contents": [
-            {
-              "type": "icon",
-              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-              "size": "sm"
-            },
-            {
-              "type": "icon",
-              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-              "size": "sm"
-            },
-            {
-              "type": "icon",
-              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-              "size": "sm"
-            },
-            {
-              "type": "icon",
-              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
-              "size": "sm"
-            },
-            {
-              "type": "icon",
-              "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
-              "size": "sm"
-            },
-            {
-              "type": "text",
-              "text": "4.0",
-              "flex": 0,
-              "margin": "md",
-              "size": "sm",
-              "color": "#999999"
-            }
-          ]
-        },
-        {
-          "type": "box",
-          "layout": "vertical",
-          "spacing": "sm",
-          "margin": "lg",
-          "contents": [
-            {
-              "type": "box",
-              "layout": "baseline",
-              "spacing": "sm",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "Place",
-                  "flex": 1,
-                  "size": "sm",
-                  "color": "#AAAAAA"
-                },
-                {
-                  "type": "text",
-                  "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
-                  "flex": 5,
-                  "size": "sm",
-                  "color": "#666666",
-                  "wrap": True
-                }
-              ]
-            },
-            {
-              "type": "box",
-              "layout": "baseline",
-              "spacing": "sm",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "Time",
-                  "flex": 1,
-                  "size": "sm",
-                  "color": "#AAAAAA"
-                },
-                {
-                  "type": "text",
-                  "text": "10:00 - 23:00",
-                  "flex": 5,
-                  "size": "sm",
-                  "color": "#666666",
-                  "wrap": True
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "footer": {
-      "type": "box",
-      "layout": "vertical",
-      "flex": 0,
-      "spacing": "sm",
-      "contents": [
-        {
-          "type": "button",
-          "action": {
-            "type": "uri",
-            "label": "CALL",
-            "uri": "https://linecorp.com"
-          },
-          "height": "sm",
-          "style": "link"
-        },
-        {
-          "type": "button",
-          "action": {
-            "type": "uri",
-            "label": "WEBSITE",
-            "uri": "https://linecorp.com"
-          },
-          "height": "sm",
-          "style": "link"
-        },
-        {
-          "type": "spacer",
-          "size": "sm"
-        }
-      ]
-    }
-  }
-}
-
-
-container_obj = FlexSendMessage.new_from_json_dict(payload)
-
-
-
-
-
-
-
-
-
-
-
 app = Flask(__name__)
 
 # 環境変数
@@ -243,21 +74,20 @@ def handle_message(event):
 
 
         line_bot_api.reply_message(
-            event.reply_token, 
+            event.reply_token,
             TextSendMessage(text=user_id),
         )
 
-        line_bot_api.push_message(userId, messages=container_obj)
 
     elif event.message.text == "foo":
         line_bot_api.reply_message(
-            event.reply_token, 
+            event.reply_token,
             TextSendMessage(text="hogefoo"),
         )
-    
+
     elif event.message.text == "test":
         line_bot_api.reply_message(
-            event.reply_token, 
+            event.reply_token,
             FlexSendMessage(
                 alt_text="test",
                 contents={
@@ -278,12 +108,27 @@ def handle_message(event):
                 }
             )
         )
-    
+
     else:
         line_bot_api.reply_message(
-            event.reply_token, 
+            event.reply_token,
             TextSendMessage(text=event.message.text),
         )
+
+@handler.add(MessageEvent, message=ImageMessage)
+def handle_image(event):
+    message_id = event.message.id
+    image_path = f"{message_id}.jpg"
+    # 画像のバイナリデータ
+    message_content = line_bot_api.get_message_content(message_id)
+    with open(image_path, "wb") as f:
+        for chunk in message_content.iter_content():
+            f.write(chunk)
+
+    image = Image.open(image_path)
+    size = (224, 224)
+    image = ImageOps.fit(image, size, Image.ANTIALIAS)
+
 
 @handler.add(FollowEvent)
 def handle_follow(event):
