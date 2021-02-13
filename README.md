@@ -1,12 +1,12 @@
 ![Python-version](https://img.shields.io/badge/Python-3.9.1-green)
 ![HEROKU](https://img.shields.io/badge/HEROKU-Success-blue)
 
-<!-- # LINEBot HUKURO -->
-<h2 align="center">LINEBot HUKURO</h2>
+<h1 align="center">LINEBot HUKURO</h2>
 
-## Feature
+<h2 align="center">Feature</h2>
 
-## Requirement
+<h2 align="center">Requirement</h2>
+
 - Python 3.9.1
 - pip 21.0.1
 
@@ -28,9 +28,10 @@
 |urllib3      |1.26.2|
 |Werkzeug     |1.0.1|
 
-## Usage
+<h2 align="center">Usage</h2>
 
-### QRCode
+<h3 align="center">QRCode</h3>
+
 ![QRCode](./images/QRCode.png)
 
-## Note
+<h2 align="center">Note</h2>
