@@ -1,7 +1,8 @@
 ![Python-version](https://img.shields.io/badge/Python-3.9.1-green)
 ![HEROKU](https://img.shields.io/badge/HEROKU-Success-blue)
 
-# LINEBot HUKURO
+<!-- # LINEBot HUKURO -->
+<h2 align="center">LINEBot HUKURO</h2>
 
 ## Feature
 
@@ -26,13 +27,6 @@
 |setuptools   |49.2.1|
 |urllib3      |1.26.2|
 |Werkzeug     |1.0.1|
-
-## Installation
-```
-git clone https://github.com/yuta0601/LINEbot-HUKURO.git
-cd /path/to/project
-pip install -r requirements.txt
-```
 
 ## Usage
 
