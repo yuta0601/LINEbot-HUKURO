@@ -67,14 +67,18 @@ def handle_message(event):
 
         # 個人情報取得(機密情報)
         userId = event.source.user_id
-        profile = line_bot_api.get_profile(userId)
-        display_name = profile.display_name
-        # image_url = profile.image_url
-        status_message = profile.status_message
+        # profile = line_bot_api.get_profile(userId)
+        # display_name = profile.display_name
+        # status_message = profile.status_message
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=userId),
+        )
+    elif event.message.text == "group":
 
         # グループ情報を取得
         groupId = event.source.group_id
-
 
         line_bot_api.reply_message(
             event.reply_token,
@@ -113,10 +117,18 @@ def handle_message(event):
     #     )
 
     else:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=event.message.text),
+
+        GROUP_ID = "C26ade19153c8f3516e45e8137e6dec14"
+        line_bot_api.push_message(
+            GROUP_ID,
+            TextSendMessage(text='ぷっしゅめっせーじです。やあ!')
         )
+
+
+        # line_bot_api.reply_message(
+        #     event.reply_token,
+        #     TextSendMessage(text=event.message.text),
+        # )
 
 # @handler.add(MessageEvent, message=ImageMessage)
 # def handle_image(event):
