@@ -66,11 +66,11 @@ def handle_message(event):
     if event.message.text == "user":
 
         # 個人情報取得(機密情報)
-        # userId = event.source.user_id
-        # profile = line_bot_api.get_profile(userId)
-        # display_name = profile.display_name
-        # image_url = profile.image_url
-        # status_message = profile.status_message
+        userId = event.source.user_id
+        profile = line_bot_api.get_profile(userId)
+        display_name = profile.display_name
+        image_url = profile.image_url
+        status_message = profile.status_message
 
         # グループ情報を取得
         # groupID = event.sorce.group_id
