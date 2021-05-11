@@ -20,7 +20,6 @@ from linebot.models import (
     TextMessage,
     TextSendMessage,
     FollowEvent,
-    #
     ImageMessage,
     AudioMessage,
     FlexSendMessage,
@@ -74,12 +73,12 @@ def handle_message(event):
         status_message = profile.status_message
 
         # グループ情報を取得
-        # groupID = event.sorce.group_id
+        groupId = event.sorce.group_id
 
 
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="test"),
+            TextSendMessage(text=groupId),
         )
 
 
