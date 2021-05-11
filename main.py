@@ -69,7 +69,7 @@ def handle_message(event):
         userId = event.source.user_id
         profile = line_bot_api.get_profile(userId)
         display_name = profile.display_name
-        image_url = profile.image_url
+        # image_url = profile.image_url
         status_message = profile.status_message
 
         # グループ情報を取得
