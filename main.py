@@ -19,12 +19,12 @@ from linebot.models import (
     MessageEvent,
     TextMessage,
     TextSendMessage,
-    FlexSendMessage,
-    BubbleContainer,
-    CarouselContainer,
+    # FlexSendMessage,
+    # BubbleContainer,
+    # CarouselContainer,
     FollowEvent,
-    ImageMessage,
-    AudioMessage,
+    # ImageMessage,
+    # AudioMessage,
 )
 
 
@@ -66,11 +66,11 @@ def handle_message(event):
     if event.message.text == "user":
 
         # 個人情報取得(機密情報)
-        userId = event.source.user_id
-        profile = line_bot_api.get_profile(userId)
-        display_name = profile.display_name
-        image_url = profile.image_url
-        status_message = profile.status_message
+        # userId = event.source.user_id
+        # profile = line_bot_api.get_profile(userId)
+        # display_name = profile.display_name
+        # image_url = profile.image_url
+        # status_message = profile.status_message
 
         # グループ情報を取得
         # groupID = event.sorce.group_id
@@ -78,7 +78,7 @@ def handle_message(event):
 
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=userId),
+            TextSendMessage(text="test"),
         )
 
 
@@ -118,8 +118,8 @@ def handle_message(event):
             TextSendMessage(text=event.message.text),
         )
 
-@handler.add(MessageEvent, message=ImageMessage)
-def handle_image(event):
+# @handler.add(MessageEvent, message=ImageMessage)
+# def handle_image(event):
     # https://qiita.com/Sweetpotato/items/89fef4f816e33968fdda
     # 上記を参考に作成しようとしたがtensorflowがインストールできないため保留
 
