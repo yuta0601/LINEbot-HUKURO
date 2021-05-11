@@ -121,7 +121,7 @@ def handle_message(event):
         GROUP_ID = "C26ade19153c8f3516e45e8137e6dec14"
         line_bot_api.push_message(
             GROUP_ID,
-            TextSendMessage(text='ぷっしゅめっせーじです。やあ!')
+            TextSendMessage(text=event.message.text)
         )
 
 
