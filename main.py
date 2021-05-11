@@ -19,12 +19,13 @@ from linebot.models import (
     MessageEvent,
     TextMessage,
     TextSendMessage,
-    # FlexSendMessage,
-    # BubbleContainer,
-    # CarouselContainer,
     FollowEvent,
-    # ImageMessage,
-    # AudioMessage,
+    #
+    ImageMessage,
+    AudioMessage,
+    FlexSendMessage,
+    BubbleContainer,
+    CarouselContainer,
 )
 
 
