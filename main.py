@@ -72,10 +72,13 @@ def handle_message(event):
         image_url = profile.image_url
         status_message = profile.status_message
 
+        # グループ情報を取得
+        groupID = event.sorce.group_id
+
 
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=user_id),
+            TextSendMessage(text=groupID),
         )
 
 
