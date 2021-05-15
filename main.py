@@ -29,6 +29,7 @@ from linebot.models import (
 
 import datetime
 import pytz
+import hashlib
 
 
 app = Flask(__name__)
@@ -95,17 +96,19 @@ def handle_message(event):
     else:
         now_time = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
         date_str = now_time.strftime('%Y/%m/%d %H:%M:%S')
+        # 2021/05/15 17:30:29
 
         count += 1
 
         userId = event.source.user_id
+        hashId = userId + date_str
+        hashId = hashId[0:6] + hashId[8:14]
 
         messages = TextSendMessage(text=
             str(count)
             + ":VIPがお送りします"
-            # + date_str
             + " ID:"
-            + userId
+            + hashId
             + "\n"
             + event.message.text
         )
