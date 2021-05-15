@@ -93,14 +93,19 @@ def handle_message(event):
         )
 
     else:
-        setting_tz = pytz.timezone('Asia/Tokyo')
-        now_time = datetime.datetime.now(setting_tz)
+        now_time = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
         date_str = now_time.strftime('%Y/%m/%d %H:%M:%S')
+
+        count += 1
+
+        userId = event.source.user_id
 
         messages = TextSendMessage(text=
             str(count)
             + ":VIPがお送りします:"
             + date_str
+            + ":ID:"
+            + userId
             + "\n"
             + event.message.text
         )
