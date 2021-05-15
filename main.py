@@ -28,6 +28,7 @@ from linebot.models import (
 )
 
 import datetime
+import pytz
 
 
 app = Flask(__name__)
@@ -92,13 +93,13 @@ def handle_message(event):
         )
 
     else:
-
-        dt_now = datetime.datetime.now()
-        date_str = dt_now.strftime('%Y/%m/%d %H:%M:%S')
+        setting_tz = pytz.timezone('Asia/Tokyo')
+        now_time = datetime.datetime.now(setting_tz)
+        date_str = now_time.strftime('%Y/%m/%d %H:%M:%S')
 
         messages = TextSendMessage(text=
             str(count)
-            + ":以下、VIPがお送りします:"
+            + ":VIPがお送りします:"
             + date_str
             + "\n"
             + event.message.text
