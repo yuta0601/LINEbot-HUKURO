@@ -106,7 +106,7 @@ def handle_message(event):
 
         messages = TextSendMessage(text=
             str(count)
-            + ":VIPがお送りします"
+            + ":以下、VIPがお送りします"
             + " ID:"
             + hashId
             + "\n"
