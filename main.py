@@ -27,7 +27,7 @@ from linebot.models import (
     CarouselContainer,
 )
 
-import datetime
+# import datetime
 
 
 app = Flask(__name__)
@@ -89,13 +89,6 @@ def handle_message(event):
             TextSendMessage(text=groupId),
         )
 
-
-    # elif event.message.text == "foo":
-    #     line_bot_api.reply_message(
-    #         event.reply_token,
-    #         TextSendMessage(text="hogefoo"),
-    #     )
-
     # elif event.message.text == "test":
     #     line_bot_api.reply_message(
     #         event.reply_token,
@@ -122,13 +115,18 @@ def handle_message(event):
 
     else:
 
-        dt_now = datetime.datetime.now()
-        date_now_str = dt_now.strftime('%Y年%m月%d日 %H:%M:%S')
+        # dt_now = datetime.datetime.now()
+        # date_now_str = dt_now.strftime('%Y年%m月%d日 %H:%M:%S')
+
 
         messages = TextSendMessage(text=
-            COUNT + ":以下、VIPがお送りします:" + date_now_str + "\n"
+            COUNT
+            + ":以下、VIPがお送りします:"
+            # + date_now_str
+            + "\n"
             + event.message.text
         )
+
         line_bot_api.broadcast(messages=messages)
 
         # 匿名チャット用
