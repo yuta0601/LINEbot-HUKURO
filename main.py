@@ -102,9 +102,9 @@ def handle_message(event):
 
         messages = TextSendMessage(text=
             str(count)
-            + ":VIPがお送りします:"
-            + date_str
-            + ":ID:"
+            + ":VIPがお送りします"
+            # + date_str
+            + " ID:"
             + userId
             + "\n"
             + event.message.text
