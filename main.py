@@ -40,7 +40,7 @@ CHANNEL_SECRET = os.environ["CHANNEL_SECRET"]
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
-COUNT = 0
+count = 0
 
 @app.route("/")
 def hello_world():
@@ -116,14 +116,14 @@ def handle_message(event):
     else:
 
         dt_now = datetime.datetime.now()
-        date_now_str = dt_now.strftime('%Y/%m/%d %H:%M:%S')
+        date_str = dt_now.strftime('%Y/%m/%d %H:%M:%S')
 
-        COUNT += 1
+        count += 1
 
         messages = TextSendMessage(text=
-            str(COUNT)
+            str(count)
             + ":以下、VIPがお送りします:"
-            + date_now_str
+            + date_str
             + "\n"
             + event.message.text
         )
