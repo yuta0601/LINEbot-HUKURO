@@ -116,8 +116,9 @@ def handle_message(event):
     else:
 
         dt_now = datetime.datetime.now()
-        date_now_str = dt_now.strftime('%Y年%m月%d日 %H:%M:%S')
+        date_now_str = dt_now.strftime('%Y/%m/%d %H:%M:%S')
 
+        COUNT += 1
 
         messages = TextSendMessage(text=
             str(COUNT)
