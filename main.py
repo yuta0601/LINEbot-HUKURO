@@ -65,7 +65,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
-    global count = 0
+    count += 1
 
     if event.message.text == "/user":
 
@@ -89,36 +89,10 @@ def handle_message(event):
             TextSendMessage(text=groupId),
         )
 
-    # elif event.message.text == "test":
-    #     line_bot_api.reply_message(
-    #         event.reply_token,
-    #         FlexSendMessage(
-    #             alt_text="test",
-    #             contents={
-    #                 "type": "bubble",
-    #                 "direction": "ltr",
-    #                 "hero": {
-    #                     "type": "image",
-    #                     "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
-    #                     "size": "full",
-    #                     "aspectRatio": "20:13",
-    #                     "aspectMode": "cover",
-    #                     "action": {
-    #                         "type": "uri",
-    #                         "uri": "https://sites.google.com",
-    #                         "label": "label"
-    #                     }
-    #                 },
-    #             }
-    #         )
-    #     )
-
     else:
 
         dt_now = datetime.datetime.now()
         date_str = dt_now.strftime('%Y/%m/%d %H:%M:%S')
-
-        count += 1
 
         messages = TextSendMessage(text=
             str(count)
@@ -136,7 +110,6 @@ def handle_message(event):
         #     GROUP_ID,
         #     TextSendMessage(text=event.message.text)
         # )
-
 
         # line_bot_api.reply_message(
         #     event.reply_token,
