@@ -27,7 +27,7 @@ from linebot.models import (
     CarouselContainer,
 )
 
-# import datetime
+import datetime
 
 
 app = Flask(__name__)
@@ -115,14 +115,14 @@ def handle_message(event):
 
     else:
 
-        # dt_now = datetime.datetime.now()
-        # date_now_str = dt_now.strftime('%Y年%m月%d日 %H:%M:%S')
+        dt_now = datetime.datetime.now()
+        date_now_str = dt_now.strftime('%Y年%m月%d日 %H:%M:%S')
 
 
         messages = TextSendMessage(text=
-            COUNT
+            str(COUNT)
             + ":以下、VIPがお送りします:"
-            # + date_now_str
+            + date_now_str
             + "\n"
             + event.message.text
         )
