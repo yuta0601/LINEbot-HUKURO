@@ -5,6 +5,11 @@
 
 <h2 align="center">Feature</h2>
 
+<h2 align="center">Include Files</h2>
+
+- Procfile: for heroku web service
+- requirements.txt: pip
+
 <h2 align="center">Requirement</h2>
 
 - Python 3.9.1
