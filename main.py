@@ -96,12 +96,14 @@ def handle_message(event):
     else:
         now_time = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
         date_str = now_time.strftime('%Y/%m/%d %H:%M:%S')
+        # IDが日付で変更されるようにしたいため時間部分を削除
         # 2021/05/15 17:30:29
 
         count += 1
 
         userId = event.source.user_id
         hashId = userId + date_str
+        hashId = uashlib.md5(hashId.encode()).hexdigest()
         hashId = hashId[0:6] + hashId[8:14]
 
         messages = TextSendMessage(text=
