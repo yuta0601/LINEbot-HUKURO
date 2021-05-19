@@ -103,7 +103,7 @@ def handle_message(event):
 
         userId = event.source.user_id
         hashId = userId + date_str
-        hashId = uashlib.md5(hashId.encode()).hexdigest()
+        hashId = hashlib.md5(hashId.encode()).hexdigest()
         hashId = hashId[0:6] + hashId[8:14]
 
         messages = TextSendMessage(text=
