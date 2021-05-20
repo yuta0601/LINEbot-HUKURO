@@ -95,7 +95,7 @@ def handle_message(event):
 
     else:
         now_time = datetime.datetime.now(pytz.timezone('Asia/Tokyo'))
-        date_str = now_time.strftime('%Y/%m/%d %H:%M:%S')
+        date_str = now_time.strftime('%Y/%m/%d')
         # IDが日付で変更されるようにしたいため時間部分を削除
         # 2021/05/15 17:30:29
 
