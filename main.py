@@ -85,8 +85,12 @@ def handle_message(event):
         )
     elif event.message.text == "/group":
 
-        # グループ情報を取得
+        # グループ情報取得(機密情報)
         groupId = event.source.group_id
+        # line_bot_api.push_message(
+        #     GROUP_ID,
+        #     TextSendMessage(text=event.message.text)
+        # )
 
         line_bot_api.reply_message(
             event.reply_token,
@@ -116,17 +120,6 @@ def handle_message(event):
 
         line_bot_api.broadcast(messages=messages)
 
-        # 匿名チャット用
-        # GROUP_ID = "C26ade19153c8f3516e45e8137e6dec14"
-        # line_bot_api.push_message(
-        #     GROUP_ID,
-        #     TextSendMessage(text=event.message.text)
-        # )
-
-        # line_bot_api.reply_message(
-        #     event.reply_token,
-        #     TextSendMessage(text=event.message.text),
-        # )
 
 # @handler.add(MessageEvent, message=ImageMessage)
 # def handle_image(event):
